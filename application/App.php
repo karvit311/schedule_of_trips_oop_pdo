@@ -1,13 +1,9 @@
 <?php
 namespace Application;
-include_once 'Loader.php';
+// include_once 'Loader.php';
 class App {
 
     private static $_instance=null;
-
-    private function __construct() {
-        \Application\Loader::registerAutoLoad();
-    }
 
     public function run(){
         
