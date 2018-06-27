@@ -16,7 +16,9 @@ class App
 	{
 		static::$app = $this;
 		$this->router = new \Application\core\Router(); 
-		$this->db = new \PDO("mysql:host=".$this->host.";dbname=".$this->dbase,$this->user,$this->pass);	
+		// $this->db = new \PDO("mysql:host=".$this->host.";dbname=".$this->dbase,$this->user,$this->pass);
+		$this->db = new \Application\core\DB(); 	
+
 	}
 	public function run()
 	{

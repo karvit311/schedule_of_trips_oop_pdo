@@ -18,7 +18,7 @@
             $curier_id = $row['curier_id'];
             $date_depart = $row['date_depart'];
             $date_arrival = $row['date_arrival'];
-            $reg = new Region($pdo);
+            $reg = new \Application\models\Region();
             $stmt = $reg->get_prepare_by_id();
             $stmt->execute(array($region_id));
             foreach ($stmt as $row)

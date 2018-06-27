@@ -4,16 +4,19 @@ use Application\core\App;
 include('database.php');
 class Schedule extends \Application\core\Model
 {   
-    // private $conn; 
-    // public $pdo;
-    // public function __construct(\PDO $pdo) {
-    //     // $this->conn = $pdo;
-    //     $this-> = App::$app->getDb();
-    // }
+    public $host="localhost";
+    public $user="root";
+    public $db="api";
+    public $pass="Re_zinaidaromanova311888";
+    public $conn;
+    public function __construct(){
+        $this->conn = new \PDO("mysql:host=".$this->host.";dbname=".$this->db,$this->user,$this->pass);
+    }
+
     public function get_schedules()  
     {     
     $query = App::$app->get_db();   
-        return $this->query->query("SELECT * FROM schedule ORDER BY date_depart ASC")->fetchAll(); 
+        return $this->conn->query("SELECT * FROM schedule ORDER BY date_depart ASC")->fetchAll(); 
     }
     public function get_schedules_conditionals()  
     {  
@@ -21,7 +24,7 @@ class Schedule extends \Application\core\Model
     }
     public function get_schedules_selects()  
     {  
-        $query = App::$app->get_db();  
+        // $query = App::$app->get_db($this->conn);  
         return $this->conn->prepare("SELECT * FROM schedule WHERE ( date_depart BETWEEN ? AND ? ) ORDER BY date_depart ASC  ");
     }
     public function get_insert($region_id,$curier_id,$date_depart_res,$time_in_road,$stamp_total_time_in_road)

@@ -3,9 +3,17 @@ namespace Application\models;
 include('database.php');
 class Region extends \Application\core\Model 
 {   
-    private $conn; 
-    public function __construct(\PDO $pdo) {
-        $this->conn = $pdo;
+    // private $conn; 
+    // public function __construct(\PDO $pdo) {
+    //     $this->conn = $pdo;
+    // }
+    public $host="localhost";
+    public $user="root";
+    public $db="api";
+    public $pass="Re_zinaidaromanova311888";
+    public $conn;
+    public function __construct(){
+        $this->conn = new \PDO("mysql:host=".$this->host.";dbname=".$this->db,$this->user,$this->pass);
     }
     public function get_regions()  
     {  
