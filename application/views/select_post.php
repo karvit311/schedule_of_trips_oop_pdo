@@ -8,7 +8,7 @@
         $to = $_POST['date2'];//06/20/2018 6:13 AM
         $to = strtotime("$to");
         $to = date("m/d/Y H:i:s", $to);
-        $sche = new Schedule($pdo);
+        $sche = new \Application\models\Schedule($pdo);
         $res = $sche->get_schedules_selects();
         $res->execute(array($from,$to));
         foreach ($res as $row)

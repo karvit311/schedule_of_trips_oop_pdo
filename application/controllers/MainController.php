@@ -20,7 +20,7 @@ class MainController extends \Application\core\Controller
     }
     public function actionAddNewRegion()
     {   
-        include ('./application/models/Region.php');    
+        // include ('./application/models/Region.php');    
         if((isset($_POST['new_region'])) ){ 
             $new_region = addslashes( $_POST['new_region']);
             $reg = new Region($pdo);
