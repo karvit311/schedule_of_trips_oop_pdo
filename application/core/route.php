@@ -1,6 +1,6 @@
 <?php
 namespace Application\core;
-use yii\web\Application;
+use Application\App;
 class Route
 {
 	static function start()
