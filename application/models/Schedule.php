@@ -1,6 +1,7 @@
-<?php  
+<?php 
+namespace Application\models;  
 include('database.php');
-class Schedule  
+class Schedule extends \Application\core\Model
 {   
     private $conn; 
     public function __construct(\PDO $pdo) {

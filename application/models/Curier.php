@@ -1,12 +1,12 @@
-<?php  
+<?php 
+namespace Application\models; 
 include('database.php');
-class Curier  
+class Curier extends \Application\core\Model
 {   
-   private $conn; 
+    private $conn; 
     public function __construct(\PDO $pdo) {
         $this->conn = $pdo;
     }
-    
     public function get_curiers()  
     {  
         return $this->conn->query("SELECT * FROM curier")->fetchAll(); 

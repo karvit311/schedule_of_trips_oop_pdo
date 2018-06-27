@@ -1,6 +1,7 @@
-<?php  
+<?php
+namespace Application\models;   
 include('database.php');
-class Region  
+class Region extends \Application\core\Model 
 {   
     private $conn; 
     public function __construct(\PDO $pdo) {

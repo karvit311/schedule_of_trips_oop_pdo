@@ -1,0 +1,26 @@
+ #post_form{
+        margin-left: 25%;
+        width: 47%;
+        height: 400px;
+        border: 1px solid black;
+    }
+    #post_form select{
+        width: 40%;
+    }
+    #add_new_curier_or_region li{
+        margin-right: 10%;
+    }
+    #add_new_curier_or_region li{
+        float: left;
+        list-style: none;
+    }
+    #add_new_curier_or_region button,input{
+        width: 100%;
+    }
+    #add_new_schedule_form{
+        margin-left: 10%;
+    }
+    #result_display{
+        margin: 0 auto;
+        width: 300px;
+    }

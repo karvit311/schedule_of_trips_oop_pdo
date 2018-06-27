@@ -1,8 +1,7 @@
 <?php
-	include ('Schedule.php');
-    include ('Curier.php');
-    include ('Region.php');
-    include ('database.php');
+	include ('./application/models/Schedule.php');
+    include ('./application/models/Curier.php');
+    include ('./application/models/Region.php');
 	if(isset($_POST['date1']) && (isset($_POST['date2']))){
         $date1 = $_POST['date1'];
         $date2 = $_POST['date2'];
