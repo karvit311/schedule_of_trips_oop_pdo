@@ -1,7 +1,4 @@
 <?php
-	include ('./application/models/Schedule.php');
-    include ('./application/models/Curier.php');
-    include ('./application/models/Region.php');
 	if(isset($_POST['date1']) && (isset($_POST['date2']))){
         $date1 = $_POST['date1'];
         $date2 = $_POST['date2'];
@@ -10,7 +7,7 @@
         $from = date("m/d/Y H:i:s", $from);
         $to = $_POST['date2'];//06/20/2018 6:13 AM
         $to = strtotime("$to");
-        $to = date("m/d/Y H:i:s", $to); 
+        $to = date("m/d/Y H:i:s", $to);
         $sche = new Schedule($pdo);
         $res = $sche->get_schedules_selects();
         $res->execute(array($from,$to));

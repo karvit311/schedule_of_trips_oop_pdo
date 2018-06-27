@@ -1,19 +1,22 @@
 <?php
 namespace Application\controllers;
 use Application\models\Curier;
+use Application\models\Schedule;
+use Application\models\Region;
+
 class MainController extends \Application\core\Controller
 {
     public function actionIndex()
     {
-        $this->view->generate('index.php', 'layout.php');
+        require_once(ROOT . '/application/views/index.php');
     }
     public function actionSelectPost()
     {   
-        $this->view->generate('select_post.php', 'layout.php');
+        require_once(ROOT . '/application/views/select_post.php');
     }
     public function actionAddNewSchedule()
     {   
-        $this->view->generate('add_new_schedule.php', 'layout.php');
+        require_once(ROOT . '/application/views/add_new_schedule.php');\
     }
     public function actionAddNewRegion()
     {   

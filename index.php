@@ -1,8 +1,12 @@
 <?php
 ini_set('display_errors', 1);
 require_once 'application/bootstrap.php';
-require_once __DIR__ . '/../vendor/autoload.php';
-include 'application/App.php';
-$app = \Application\App::getInstance();
-$app->run();
-?>
+define('ROOT', dirname(__FILE__));
+require_once(ROOT.'/application/core/route.php');
+ 
+// подключаем конфигурацию URL
+$routes=ROOT.'/application/routes.php';
+ 
+// запускаем роутер
+$router = new Application\core\Router($routes);
+$router->run();

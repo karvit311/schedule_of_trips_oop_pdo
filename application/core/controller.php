@@ -1,16 +1,12 @@
-<?php 
+<?php
 namespace Application\core;
 class Controller {
-	
-	public $model;
-	public $view;
-	
-	function __construct()
-	{
-		$this->view = new View();
-	}
-	
-	function action_index()
-	{
-	}
+    protected $view;
+ 
+    function __construct(){
+        // используем наш View, описанный ранее
+        $this->view = new View();
+    }
+ 
+    // другие полезные методы вроде redirect($url);
 }
