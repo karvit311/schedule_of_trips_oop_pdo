@@ -1,6 +1,6 @@
-    <?php
-    namespace Application\models;
-    class DB extends \Application\core\Model{
+<?php
+namespace Application\core;
+class DB {
     	private $conn;
     	private $host;
     	private $user;
@@ -27,7 +27,7 @@
     	function connect() {
     		if (!$this->conn) {
     			try {
-    				$this->conn = new PDO('mysql:host='.$this->host.';dbname='.$this->baseName.'', $this->user, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));  
+    				$this->conn = new \PDO('mysql:host='.$this->host.';dbname='.$this->baseName.'', $this->user, $this->password, array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));  
     			}
     			catch (Exception $e) {
     				die('Erreur : ' . $e->getMessage());

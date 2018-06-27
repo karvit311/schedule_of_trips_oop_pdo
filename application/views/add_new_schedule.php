@@ -44,7 +44,8 @@
     		<form method="post" id="add_new_schedule_form">	
                 <br>
                 <label>Курьер:</label>
-                <?php $curier = new Curier($pdo);
+                <?php $curier = new \Application\models\Curier();
+
                     $list = $curier->get_curiers();?>
                     <select id="curier" name="curier"><?php
                         foreach($list as $test) {

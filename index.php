@@ -14,3 +14,5 @@ $routes=ROOT.'/application/routes.php';
 // запускаем роутер
 $router = new Application\core\Router($routes);
 $router->run();
+$router = new Application\core\App();
+$router->run();

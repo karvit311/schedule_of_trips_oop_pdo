@@ -1,4 +1,5 @@
 <?php
+// public $pdo;
 	if(isset($_POST['date1']) && (isset($_POST['date2']))){
         $date1 = $_POST['date1'];
         $date2 = $_POST['date2'];
@@ -8,7 +9,7 @@
         $to = $_POST['date2'];//06/20/2018 6:13 AM
         $to = strtotime("$to");
         $to = date("m/d/Y H:i:s", $to);
-        $sche = new \Application\models\Schedule($pdo);
+        $sche = new \Application\models\Schedule();
         $res = $sche->get_schedules_selects();
         $res->execute(array($from,$to));
         foreach ($res as $row)
@@ -23,7 +24,7 @@
             foreach ($stmt as $row)
             {
                 $region_name_final = $row['name'];
-                $cur = new Curier($pdo);
+                $cur = new \Application\models\Curier();
                 $stmt = $cur->get_prepare_by_id();
                 $stmt->execute(array($curier_id));
                 foreach ($stmt as $row)

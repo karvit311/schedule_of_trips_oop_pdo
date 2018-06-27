@@ -1,15 +1,19 @@
 <?php 
 namespace Application\models;  
+use Application\core\App;
 include('database.php');
 class Schedule extends \Application\core\Model
 {   
-    private $conn; 
-    public function __construct(\PDO $pdo) {
-        $this->conn = $pdo;
-    }
+    // private $conn; 
+    // public $pdo;
+    // public function __construct(\PDO $pdo) {
+    //     // $this->conn = $pdo;
+    //     $this-> = App::$app->getDb();
+    // }
     public function get_schedules()  
-    {          
-        return $this->conn->query("SELECT * FROM schedule ORDER BY date_depart ASC")->fetchAll(); 
+    {     
+    $query = App::$app->get_db();   
+        return $this->query->query("SELECT * FROM schedule ORDER BY date_depart ASC")->fetchAll(); 
     }
     public function get_schedules_conditionals()  
     {  
@@ -17,6 +21,7 @@ class Schedule extends \Application\core\Model
     }
     public function get_schedules_selects()  
     {  
+        $query = App::$app->get_db();  
         return $this->conn->prepare("SELECT * FROM schedule WHERE ( date_depart BETWEEN ? AND ? ) ORDER BY date_depart ASC  ");
     }
     public function get_insert($region_id,$curier_id,$date_depart_res,$time_in_road,$stamp_total_time_in_road)
