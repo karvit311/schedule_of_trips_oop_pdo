@@ -16,7 +16,7 @@ class MainController extends \Application\core\Controller
     }
     public function actionAddNewSchedule()
     {   
-        require_once(ROOT . '/application/views/add_new_schedule.php');\
+        require_once(ROOT . '/application/views/add_new_schedule.php');
     }
     public function actionAddNewRegion()
     {   
