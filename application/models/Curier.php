@@ -9,21 +9,23 @@ class Curier extends \Application\core\DB{
     public $comment;
     public $host="localhost";
     public $user="root";
-    public $db="api";
+    public $dbase="api";
     public $pass="Re_zinaidaromanova311888";
     // private $conn; 
     // public function __construct(\PDO $pdo) {
     //     $this->conn = $pdo;
     // }
     public $conn;
+    public $query;
     public function __construct(){
 
-        $this->conn = new \PDO("mysql:host=".$this->host.";dbname=".$this->db,$this->user,$this->pass);
+        // $this->conn = new \PDO("mysql:host=".$this->host.";dbname=".$this->dbase,$this->user,$this->pass);
+         $this->query = App::$app->get_db(); 
+
     }
     public function get_curiers()  
     {  
-        $query = App::$app->get_db();   
-
+        // $query = App::$app->get_db(); 
         return $this->query->query("SELECT * FROM curier")->fetchAll(); 
     }      
     public function get_prepare()

@@ -6,17 +6,19 @@ class Schedule extends \Application\core\Model
 {   
     public $host="localhost";
     public $user="root";
-    public $db="api";
+    public $dbase="api";
     public $pass="Re_zinaidaromanova311888";
     public $conn;
+    public $db;
+    public $router;
     public function __construct(){
-        $this->conn = new \PDO("mysql:host=".$this->host.";dbname=".$this->db,$this->user,$this->pass);
+        $this->conn = new \PDO("mysql:host=".$this->host.";dbname=".$this->dbase,$this->user,$this->pass);
     }
 
     public function get_schedules()  
     {     
-    $query = App::$app->get_db();   
-        return $this->conn->query("SELECT * FROM schedule ORDER BY date_depart ASC")->fetchAll(); 
+    $query = App::$app->get_db($db,$router);   
+        return $this->query->query("SELECT * FROM schedule ORDER BY date_depart ASC")->fetchAll(); 
     }
     public function get_schedules_conditionals()  
     {  
