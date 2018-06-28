@@ -63,7 +63,9 @@
             <br>
         </div>
         <?php $res = \Application\core\App::$app->get_db();
-        var_dump($res); ?>
+        $res2= \Application\models\Schedule::get_schedules();
+        var_dump($res);
+        var_dump($res2); ?>
         <div id="select_result" style=""></div>
 
     </body>   
