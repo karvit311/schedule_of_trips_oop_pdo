@@ -19,8 +19,7 @@ class MainController extends \Application\core\Controller
         	require_once(ROOT . '/application/views/add_new_schedule.php');
    	}
     	public function actionAddNewRegion()
-	{
-		// include ('./application/models/Region.php');    
+	{   
         	if((isset($_POST['new_region'])) ){ 
             		$new_region = addslashes( $_POST['new_region']);
             		$reg = new Region($pdo);
@@ -38,7 +37,6 @@ class MainController extends \Application\core\Controller
     	}
     	public function actionAddNewCurier()
     	{   
-        	include ('./application/models/Curier.php');  
         	if((isset($_POST['new_curier'])) ){ 
             		$new_curier = addslashes( $_POST['new_curier']);
             		$cur = new Curier($pdo);
