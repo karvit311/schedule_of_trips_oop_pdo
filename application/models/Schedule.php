@@ -1,7 +1,6 @@
 <?php 
 namespace Application\models;  
 use Application\core\App;
-include('database.php');
 class Schedule extends \Application\core\Model
 {   
     public $host="localhost";
