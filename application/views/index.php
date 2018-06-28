@@ -62,7 +62,10 @@
             </form> 
             <br>
         </div>
+        <?php $res = \Application\core\App::$app->get_db();
+        var_dump($res); ?>
         <div id="select_result" style=""></div>
+
     </body>   
     <script>
         $(document).ready(function(){
