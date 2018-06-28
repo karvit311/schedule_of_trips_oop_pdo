@@ -1,7 +1,6 @@
 <?php 
 namespace Application\models; 
 use Application\core\App;
-include('database.php');
 class Curier extends \Application\core\DB{
     public $id;
     public $userId;
