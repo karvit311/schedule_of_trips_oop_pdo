@@ -4,7 +4,7 @@ use Application\models\Curier;
 use Application\models\Schedule;
 use Application\models\Region;
 
-class MainController extends \Application\core\Controller
+class MainController 
 {
 	public function actionIndex()
 	{
@@ -22,14 +22,14 @@ class MainController extends \Application\core\Controller
 	{   
     	if((isset($_POST['new_region'])) ){ 
     		$new_region = addslashes( $_POST['new_region']);
-    		$reg = new Region($pdo);
-    		$stmt = $reg->get_prepare();
+    		$reg = new Region();
+    		$stmt = $reg->get_prepare($new_region);
     		$stmt->execute(array($new_region));
     		$count = $stmt->rowCount(); 
     		if ( $count>0 ) {
         		echo 'count<br>';
     		}else{ 
-        		$curier = new Region($pdo);
+        		$curier = new Region();
         		$curier->insert($new_region); 
         		echo '1';
     		} 
@@ -39,14 +39,14 @@ class MainController extends \Application\core\Controller
 	{   
     	if((isset($_POST['new_curier'])) ){ 
     		$new_curier = addslashes( $_POST['new_curier']);
-    		$cur = new Curier($pdo);
-    		$stmt = $cur->get_prepare();
+    		$cur = new Curier();
+    		$stmt = $cur->get_prepare($new_curier);
     		$stmt->execute(array($new_curier));
     		$count = $stmt->rowCount();
     		if ( $count>0 ) {
         		echo 'count';
     		}else{ 
-        		$curier = new Curier($pdo);
+        		$curier = new Curier();
         		$curier->insert($new_curier); 
         		echo '1';
     		} 

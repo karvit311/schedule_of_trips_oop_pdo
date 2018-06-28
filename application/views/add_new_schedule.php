@@ -54,7 +54,7 @@
                     </select>
                 <br>
                 <label>Регион:</label>
-                <?php $region = new Region($pdo);
+                <?php $region = new \Application\models\Region();
                     $list = $region->get_regions();?>
                     <select id="region" name="region"><?php
                         foreach($list as $test) {

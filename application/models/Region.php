@@ -1,35 +1,35 @@
 <?php
-namespace Application\models;   
-class Region extends \Application\core\Model 
+namespace Application\models;  
+use Application\core\App;
+
+class Region  
 {   
-    // private $conn; 
-    // public function __construct(\PDO $pdo) {
-    //     $this->conn = $pdo;
-    // }
-    public $host="localhost";
-    public $user="root";
-    public $db="api";
-    public $pass="Re_zinaidaromanova311888";
     public $conn;
-    public function __construct(){
-        $this->conn = new \PDO("mysql:host=".$this->host.";dbname=".$this->db,$this->user,$this->pass);
-    }
+
     public function get_regions()  
     {  
-        return $this->conn->query("SELECT * FROM region")->fetchAll(); 
+        $conn = App::$app->get_db();
+        return $conn->query("SELECT * FROM region")->fetchAll(); 
     } 
-    public function get_prepare()
+    public function get_prepare($new_region)
     {
-        return $this->conn->prepare( "SELECT id, name FROM region WHERE name = ?");
+        $conn = App::$app->get_db(); 
+        $stmt = $conn->prepare("SELECT id, name FROM region WHERE name = ?");
+        $stmt->bindParam(1, $new_region);
+        return $stmt;
     }  
-    public function get_prepare_by_id()
+    public function get_prepare_by_id($region_id)
     {
-        return $this->conn->prepare( "SELECT id, name FROM region WHERE id = ?");
+        $conn = App::$app->get_db(); 
+        $stmt = $conn->prepare("SELECT id, name FROM region WHERE id = ?");
+        $stmt->bindParam(1, $region_id);
+        return $stmt;
     }        
     public function insert($new_region)
     {
-        $stmt = $this->conn->prepare( "INSERT INTO region (name)  VALUES(:name)");
-        $stmt->bindParam(":name", $new_region, PDO::PARAM_STR);
+        $conn = App::$app->get_db(); 
+        $stmt = $conn->prepare( "INSERT INTO region (name)  VALUES(:name)");
+        $stmt->bindParam(":name", $new_region, \PDO::PARAM_STR);
         $stmt->execute();
     }  
 }  

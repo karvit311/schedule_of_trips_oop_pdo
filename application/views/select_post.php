@@ -1,5 +1,4 @@
 <?php
-// public $pdo;
 	if(isset($_POST['date1']) && (isset($_POST['date2']))){
         $date1 = $_POST['date1'];
         $date2 = $_POST['date2'];
@@ -19,13 +18,13 @@
             $date_depart = $row['date_depart'];
             $date_arrival = $row['date_arrival'];
             $reg = new \Application\models\Region();
-            $stmt = $reg->get_prepare_by_id();
+            $stmt = $reg->get_prepare_by_id($region_id);
             $stmt->execute(array($region_id));
             foreach ($stmt as $row)
             {
                 $region_name_final = $row['name'];
                 $cur = new \Application\models\Curier();
-                $stmt = $cur->get_prepare_by_id();
+                $stmt = $cur->get_prepare_by_id($curier_id);
                 $stmt->execute(array($curier_id));
                 foreach ($stmt as $row)
                 {

@@ -4,7 +4,6 @@ class App
 {
 	private $db;
 	private $router;
-
 	public static $app;
 	private $host="localhost";
 	private $user="root";
