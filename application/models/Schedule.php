@@ -85,7 +85,7 @@ class Schedule extends \Application\core\Model
     }
     public function get_res($res)
     {
-        if(isset($res){
+        if(isset($res)){
             $schedule = new Schedule($pdo);
             $list = $schedule->get_schedules();
             foreach($list as $row) {
