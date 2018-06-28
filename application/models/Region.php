@@ -1,6 +1,5 @@
 <?php
 namespace Application\models;   
-include('database.php');
 class Region extends \Application\core\Model 
 {   
     // private $conn; 
