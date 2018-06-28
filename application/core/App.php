@@ -1,6 +1,5 @@
 <?php
 namespace Application\core;
-// include('database.php');
 class App
 {
 	private $db;
@@ -17,7 +16,6 @@ class App
 		static::$app = $this;
 		$this->router = new \Application\core\Router(); 
 		$this->db = new \Application\core\DB(); 	
-
 	}
 	public function run()
 	{
