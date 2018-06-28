@@ -26,7 +26,7 @@ class Region extends \Application\core\Model
     {
         return $this->conn->prepare( "SELECT id, name FROM region WHERE id = ?");
     }        
-    public function get_insert($new_region)
+    public function insert($new_region)
     {
         $stmt = $this->conn->prepare( "INSERT INTO region (name)  VALUES(:name)");
         $stmt->bindParam(":name", $new_region, PDO::PARAM_STR);

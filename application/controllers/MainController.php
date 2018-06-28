@@ -6,7 +6,6 @@ use Application\models\Region;
 
 class MainController extends \Application\core\Controller
 {
-<<<<<<< HEAD
 	public function actionIndex()
 	{
     	require_once(ROOT . '/application/views/index.php');
@@ -31,7 +30,7 @@ class MainController extends \Application\core\Controller
         		echo 'count<br>';
     		}else{ 
         		$curier = new Region($pdo);
-        		$curier->get_insert($new_region); 
+        		$curier->insert($new_region); 
         		echo '1';
     		} 
     	}
@@ -48,7 +47,7 @@ class MainController extends \Application\core\Controller
         		echo 'count';
     		}else{ 
         		$curier = new Curier($pdo);
-        		$curier->get_insert($new_curier); 
+        		$curier->insert($new_curier); 
         		echo '1';
     		} 
     	}
@@ -89,7 +88,7 @@ class MainController extends \Application\core\Controller
                 		echo 'count<br>';
             		}else{ 
                 		$curier = new Region($pdo);
-                		$curier->get_insert($new_region); 
+                		$curier->insert($new_region); 
                 		echo '1';
             		} 
         	}
@@ -106,7 +105,7 @@ class MainController extends \Application\core\Controller
                 		echo 'count';
             		}else{ 
                 		$curier = new Curier($pdo);
-                		$curier->get_insert($new_curier); 
+                		$curier->insert($new_curier); 
                 		echo '1';
             		} 
         	}
@@ -150,7 +149,7 @@ class MainController extends \Application\core\Controller
                     		echo 'count';
                 	}else{ 
                 		$schedule = new Schedule($pdo);
-                		$schedule->get_insert($region_id,$curier_id,$date_depart_res,$time_in_road,$stamp_total_time_in_road);
+                		$schedule->insert($region_id,$curier_id,$date_depart_res,$time_in_road,$stamp_total_time_in_road);
                 		echo '1';
             		}
         	}

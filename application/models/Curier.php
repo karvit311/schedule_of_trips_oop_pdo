@@ -35,7 +35,7 @@ class Curier extends \Application\core\DB{
     {
         return $this->conn->prepare( "SELECT id, name FROM curier WHERE id = ?");
     }        
-    public function get_insert($new_curier)
+    public function insert($new_curier)
     {
         $stmt = $this->conn->prepare( "INSERT INTO curier (name)  VALUES(:name)");
         $stmt->bindParam(":name", $new_curier, PDO::PARAM_STR);
