@@ -11,30 +11,38 @@ class Schedule extends \Application\core\Model
     public $db;
     public $router;
     public $query;
-    public function __construct(){
-        // $this->conn = false;
-        // $this->conn = new \PDO("mysql:host=".$this->host.";dbname=".$this->dbase,$this->user,$this->pass);
-    // $this->conn = App::$app->get_db();   
+    // public function __construct($conn  ){
+    //     // $this->conn = false;
+    //     // $this->conn = new \PDO("mysql:host=".$this->host.";dbname=".$this->dbase,$this->user,$this->pass);
+    // // $this->conn = App::$app->get_db();
+    //  $this->conn = App::$app->get_db();
 
-    }
+
+    // }
 
     public function get_schedules()  
-    {      $conn =App::$app->get_db();
+    {
+        $conn =App::$app->get_db();
         // return $conn->get("SELECT * FROM schedule ORDER BY date_depart ASC")->fetchAll(); 
         return $conn->query("SELECT * FROM schedule ORDER BY date_depart ASC")->fetchAll(); 
 
     }
     public function get_schedules_conditionals()  
-    {  
+    {   
+        $conn =App::$app->get_db();
         return $this->conn->prepare("SELECT * FROM schedule WHERE (curier_id=?) AND (region_id= ?) AND (date_depart BETWEEN ? AND ? OR  date_arrival BETWEEN ? AND ? ) ");
     }
-    public function get_schedules_selects()  
+    public function get_schedules_selects($from, $to)  
     {  
-        // $query = App::$app->get_db($this->conn);  
-        return $this->conn->prepare("SELECT * FROM schedule WHERE ( date_depart BETWEEN ? AND ? ) ORDER BY date_depart ASC  ");
+        $conn =App::$app->get_db(); 
+        $stmt =$conn->prepare("SELECT * FROM schedule WHERE ( date_depart BETWEEN ? AND  ? ) ORDER BY date_depart ASC  ");
+        $stmt->bindValue(1, $from);
+        $stmt->bindValue(2, $to);
+        return $stmt;
     }
     public function insert($region_id,$curier_id,$date_depart_res,$time_in_road,$stamp_total_time_in_road)
     {
+        $conn =App::$app->get_db();
         $stmt = $this->conn->prepare( "INSERT INTO schedule (region_id,curier_id,date_depart,time_in_road,date_arrival)  VALUES(:region_id,:curier_id,:date_depart,:time_in_road,:date_arrival)");
         $stmt->bindParam(":curier_id", $curier_id, PDO::PARAM_INT);
         $stmt->bindParam(":region_id", $region_id, PDO::PARAM_INT);
@@ -45,6 +53,7 @@ class Schedule extends \Application\core\Model
     }
     public function add_post($region,$curier,$date_depart,$time_in_road)
     {
+        $conn =App::$app->get_db();
         if((isset($region)  && isset($curier)) && isset($date_depart) && isset($time_in_road)) {   
             $date_depart_res = addslashes( $date_depart);//06/20/2018 6:13 AM
             $date_depart_res = strtotime("$date_depart_res");

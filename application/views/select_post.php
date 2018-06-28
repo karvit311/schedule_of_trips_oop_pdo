@@ -10,7 +10,7 @@
         $to = strtotime("$to");
         $to = date("m/d/Y H:i:s", $to);
         $sche = new \Application\models\Schedule();
-        $res = $sche->get_schedules_selects();
+        $res = $sche->get_schedules_selects($from,$to);
         $res->execute(array($from,$to));
         foreach ($res as $row)
         {
