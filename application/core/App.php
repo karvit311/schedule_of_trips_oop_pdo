@@ -1,32 +1,30 @@
 <?php
-namespace Application\core;
+
+namespace core;
+
 class App
 {
-	private $db;
-	private $router;
-	public static $app;
-	private $host="localhost";
-	private $user="root";
-	private $dbase="api";
-	private $pass="Re_zinaidaromanova311888";
+    private $_db;
+    private $_router;
 
-	public function __construct()
-	{
-		static::$app = $this;
-		$this->router = new \Application\core\Router(); 
-		$this->db = new \PDO("mysql:host=".$this->host.";dbname=".$this->dbase,$this->user,$this->pass); 	
-	}
-	public function run()
-	{
-		$this->router->run();
-	}
-	public function set_db($db) 
-	{
-		$this->db = $db;
-	}
-	public function get_db() 
-	{
-		return $this->db;
-	}
+    /** @var static */
+    public static $app;
+
+    public function __construct()
+    {
+        static::$app = $this;
+
+        $this->_router = new Router();
+        $this->_db = new Db();
+    }
+
+    public function run()
+    {
+        $this->_router->run();
+    }
+
+    public function getDb()
+    {
+        return $this->_db;
+    }
 }
-?>
