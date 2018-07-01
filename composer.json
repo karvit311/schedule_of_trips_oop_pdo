@@ -8,9 +8,11 @@
         }
     ],
     "autoload": {
+        "psr-0": {
+            "Application": "application/"
+        },
         "psr-4": {
-            "Application\\": "src/",
-            "Vendor\\Namespace\\": ""
+            "": "application/"
         }
 	},
     "require": {

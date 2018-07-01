@@ -1,5 +1,5 @@
 <?php
-namespace Application\core;
+namespace core;
 /**
  * Класс Router
  * Компонент для работы с маршрутами
@@ -54,16 +54,13 @@ class Router
                 // Подключить файл класса-контроллера
                 $controllerFile = ROOT . '/application/controllers/' .
                 $controllerName . '.php';
-                if (file_exists($controllerFile)) {
-                        include_once($controllerFile);
-                }
                 // Создать объект, вызвать метод (т.е. action)
-                $controller_paths= "Application\\controllers\\".$controllerName;
+                $controller_paths= "\\Application\\controllers\\".$controllerName;
                 $controllerObject = new $controller_paths;
-                /* Вызываем необходимый метод ($actionName) у определенного 
+                /* Вызываем необходимый метод ($actionName) у определенного
                 * класса ($controllerObject) с заданными ($parameters) параметрами
                 */
-                $result = call_user_func_array(array($controllerObject, $actionName), $parameters);
+                $result = call_user_func_array([$controllerObject, $actionName], $parameters);
                 // Если метод контроллера успешно вызван, завершаем работу роутера
                 if ($result != null) {
                         break;
