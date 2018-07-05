@@ -29,7 +29,7 @@ class Router
     private function getURI()
     {
         if (!empty($_SERVER['REQUEST_URI'])) {
-                return trim($_SERVER['REQUEST_URI'], '/');
+            return trim($_SERVER['REQUEST_URI'], '/');
         }
     }
     /**
@@ -63,7 +63,7 @@ class Router
                 $result = call_user_func_array([$controllerObject, $actionName], $parameters);
                 // Если метод контроллера успешно вызван, завершаем работу роутера
                 if ($result != null) {
-                        break;
+                    break;
                 }
             }
         }
