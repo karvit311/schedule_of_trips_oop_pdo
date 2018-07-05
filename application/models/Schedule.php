@@ -3,6 +3,7 @@ namespace Application\models;
 use Application\core\App;
 use Application\models\Region;
 use Application\models\Curier;
+use Application\core\Db;
 
 class Schedule 
 {   
@@ -10,13 +11,13 @@ class Schedule
 
     public function get_schedules()  
     {
-        $conn =App::$app->get_db();
-        return $conn->query("SELECT * FROM schedule ORDER BY date_depart ASC")->fetchAll(); 
+        $conn = App::$app->getDb();
+        return $conn->rawSql("SELECT * FROM schedule ORDER BY date_depart ASC")->fetchAll(); 
     }
     public function get_schedules_conditionals($curier_id, $region_id,$date_depart_res, $stamp_total_time_in_road)  
     {   
-        $conn =App::$app->get_db();
-        $stmt = $conn->prepare("SELECT * FROM schedule WHERE (curier_id=?) AND (region_id= ?) AND (date_depart BETWEEN ? AND ? OR  date_arrival BETWEEN ? AND ? ) ");
+        $conn = App::$app->getDb();
+        $stmt = $conn->query("SELECT * FROM schedule WHERE (curier_id=?) AND (region_id= ?) AND (date_depart BETWEEN ? AND ? OR  date_arrival BETWEEN ? AND ? ) ");
         $stmt->bindValue(1, $curier_id);
         $stmt->bindValue(2, $region_id);
         $stmt->bindValue(3, $date_depart_res);
@@ -27,16 +28,16 @@ class Schedule
     }
     public function get_schedules_selects($from, $to)  
     {  
-        $conn =App::$app->get_db(); 
-        $stmt =$conn->prepare("SELECT * FROM schedule WHERE ( date_depart BETWEEN ? AND  ? ) ORDER BY date_depart ASC  ");
+        $conn = App::$app->getDb(); 
+        $stmt = $conn->query("SELECT * FROM schedule WHERE ( date_depart BETWEEN ? AND  ? ) ORDER BY date_depart ASC  ");
         $stmt->bindValue(1, $from);
         $stmt->bindValue(2, $to);
         return $stmt;
     }
     public function insert($region_id,$curier_id,$date_depart_res,$time_in_road,$stamp_total_time_in_road)
     {
-        $conn =App::$app->get_db();
-        $stmt = $conn->prepare( "INSERT INTO schedule (region_id,curier_id,date_depart,time_in_road,date_arrival)  VALUES(:region_id,:curier_id,:date_depart,:time_in_road,:date_arrival)");
+        $conn =App::$app->getDb();
+        $stmt = $conn->query( "INSERT INTO schedule (region_id,curier_id,date_depart,time_in_road,date_arrival)  VALUES(:region_id,:curier_id,:date_depart,:time_in_road,:date_arrival)");
         $stmt->bindParam(":curier_id", $curier_id, \PDO::PARAM_INT);
         $stmt->bindParam(":region_id", $region_id, \PDO::PARAM_INT);
         $stmt->bindParam(":date_depart", $date_depart_res, \PDO::PARAM_STR);
@@ -46,7 +47,7 @@ class Schedule
     }
     public function add_post($region,$curier,$date_depart,$time_in_road)
     {
-        $conn =App::$app->get_db();
+        $conn =App::$app->getDb();
         if((isset($region)  && isset($curier)) && isset($date_depart) && isset($time_in_road)) {   
             $date_depart_res = addslashes( $date_depart);//06/20/2018 6:13 AM
             $date_depart_res = strtotime("$date_depart_res");
@@ -63,7 +64,7 @@ class Schedule
             $reg = new Region($pdo);
             $region = addslashes($region);
             $stmt = $reg->get_prepare($region);
-            $stmt->execute(array($region));
+            $stmt->execute([$region]);
             foreach ($stmt as $row)
             {
                 $region_id = $row['id'];
@@ -71,14 +72,14 @@ class Schedule
             $cur = new Curier();
             $curier = addslashes($curier);
             $stmt = $cur->get_prepare($curier);
-            $stmt->execute(array($curier));
+            $stmt->execute([$curier]);
             foreach ($stmt as $row)
             {
                 $curier_id = $row['id'];
             }
             $sche = new Schedule();
             $res = $sche->get_schedules_conditionals($curier_id, $region_id,$date_depart_res, $stamp_total_time_in_road,$date_depart_res, $stamp_total_time_in_road);
-            $res->execute(array($curier_id, $region_id,$date_depart_res, $stamp_total_time_in_road,$date_depart_res, $stamp_total_time_in_road));
+            $res->execute([$curier_id, $region_id,$date_depart_res, $stamp_total_time_in_road,$date_depart_res, $stamp_total_time_in_road]);
             $count = $res->rowCount();
             if ( $count>0 ) {
                     echo 'count';
@@ -114,10 +115,10 @@ class Schedule
 
                 $cur = new Curier();
                 $stmt_cur = $cur->get_prepare_by_id($curier_id);
-                $stmt_cur->execute(array($curier_id));
+                $stmt_cur->execute([$curier_id]);
                 $reg = new Region();
                 $stmt = $reg->get_prepare_by_id($region_id);
-                $stmt->execute(array($region_id));
+                $stmt->execute([$region_id]);
                 foreach ($stmt_cur as $row_cur)
                 {
                     $curier_id = $row_cur['id'];

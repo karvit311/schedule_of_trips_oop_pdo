@@ -1,9 +1,3 @@
-<?php 
-    // use \Application\models\Curier;
-    // include('application/models/Curier.php');
-    include('application/models/Region.php');
-    include('application/models/Schedule.php');
-?>
 <!DOCTYPE html>
 <html lang = "en">
     <head>

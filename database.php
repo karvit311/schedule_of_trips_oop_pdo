@@ -1,7 +1,7 @@
 <?php
 return [
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '',
+    'dsn' => 'mysql:host=localhost;dbname=api',
+    'user' => 'root',
+    'password' => 'Re_zinaidaromanova311888',
     'charset' => 'utf8',
 ];

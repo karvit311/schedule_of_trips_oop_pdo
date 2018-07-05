@@ -1,6 +1,6 @@
 <?php
 
-namespace core;
+namespace Application\core;
 
 class App
 {

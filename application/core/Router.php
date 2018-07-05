@@ -1,5 +1,5 @@
 <?php
-namespace core;
+namespace Application\core;
 /**
  * Класс Router
  * Компонент для работы с маршрутами
@@ -21,7 +21,6 @@ class Router
 
         // Получаем роуты из файла
         $this->routes = include($routesPath);
-
     }
     /**
     * Возвращает строку запроса

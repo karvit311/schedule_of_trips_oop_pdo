@@ -1,39 +1,39 @@
 #add_new_schedule_button{
-		margin-top: 5px;
-		margin-right: 5px;
-		float: right;
-		width: 180px;
-		padding: 5px;
-		padding-bottom: 5px;
-		height: 34px;
-		border: 1px solid black;
-		background: green;
-		color: white;
-		border-radius: 10px 10px 10px 10px;
-	}
-	#add_new_schedule_button:hover{
-		margin-top: 5px;
-		margin-right: 5px;
-		float: right;
-		width: 180px;
-		padding: 5px;
-		padding-bottom: 5px;
-		height: 34px;
-		border: 1px solid black;
-		background: #85cc85;
-		color: black;
-		border-radius: 10px 10px 10px 10px;
-	}
-    #select_form{
-        margin-left: 25%;
-        width: 50%;
-        height: 300px;
-        border: 1px solid black;
-    }
-    #select_form form, button{
-        margin-left: 5%;
-    }
-    #select_result{
-        margin-left: 25%;
-    }
+	margin-top: 5px;
+	margin-right: 5px;
+	float: right;
+	width: 180px;
+	padding: 5px;
+	padding-bottom: 5px;
+	height: 34px;
+	border: 1px solid black;
+	background: green;
+	color: white;
+	border-radius: 10px 10px 10px 10px;
+}
+#add_new_schedule_button:hover{
+	margin-top: 5px;
+	margin-right: 5px;
+	float: right;
+	width: 180px;
+	padding: 5px;
+	padding-bottom: 5px;
+	height: 34px;
+	border: 1px solid black;
+	background: #85cc85;
+	color: black;
+	border-radius: 10px 10px 10px 10px;
+}
+#select_form{
+    margin-left: 25%;
+    width: 50%;
+    height: 300px;
+    border: 1px solid black;
+}
+#select_form form, button{
+    margin-left: 5%;
+}
+#select_result{
+    margin-left: 25%;
+}
     

@@ -1,8 +1,10 @@
 <?php
+
 namespace Application\core;
+
 class View
 {
-	//public $template_view; // здесь можно указать общий вид по умолчанию.
+	public $template_view; // здесь можно указать общий вид по умолчанию.
 	
 	function generate($content_view, $template_view, $data = null)
 	{

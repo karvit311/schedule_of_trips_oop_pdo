@@ -9,9 +9,9 @@
         $to = strtotime("$to");
         $to = date("m/d/Y H:i:s", $to);
         $sche = new \Application\models\Schedule();
-        $res = $sche->get_schedules_selects($from,$to);
-        $res->execute(array($from,$to));
-        foreach ($res as $row)
+        $stmt = $sche->get_schedules_selects($from,$to);
+        $stmt->execute([$from,$to]);
+        foreach ($stmt as $row)
         {
             $region_id = $row['region_id'];
             $curier_id = $row['curier_id'];
@@ -19,13 +19,13 @@
             $date_arrival = $row['date_arrival'];
             $reg = new \Application\models\Region();
             $stmt = $reg->get_prepare_by_id($region_id);
-            $stmt->execute(array($region_id));
+            $stmt->execute([$region_id]);
             foreach ($stmt as $row)
             {
                 $region_name_final = $row['name'];
                 $cur = new \Application\models\Curier();
                 $stmt = $cur->get_prepare_by_id($curier_id);
-                $stmt->execute(array($curier_id));
+                $stmt->execute([$curier_id]);
                 foreach ($stmt as $row)
                 {
                     $curier_name_final = $row['name'];

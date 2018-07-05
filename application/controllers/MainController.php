@@ -5,24 +5,28 @@ namespace Application\controllers;
 use Application\models\Curier;
 use Application\models\Schedule;
 use Application\models\Region;
-use core\App;
+use Application\core\App;
 
 class MainController
 {
+    public $view;
+    function __construct()
+    {
+        $this->view = new \Application\core\View();
+    }
     public function actionIndex()
     {
-        $customers = App::$app->getDb()->rawSql('select * from customers');
-        require_once(ROOT . '/application/views/index.php');
+        $this->view->generate('index.php', 'layout.php');
     }
 
     public function actionSelectPost()
     {
-        require_once(ROOT . '/application/views/select_post.php');
+        $this->view->generate('select_post.php', 'layout.php');
     }
 
     public function actionAddNewSchedule()
     {
-        require_once(ROOT . '/application/views/add_new_schedule.php');
+        $this->view->generate('add_new_schedule.php', 'layout.php');
     }
 
     public function actionAddNewRegion()
@@ -65,7 +69,7 @@ class MainController
     {
         if ((isset($_POST['region']) && isset($_POST['curier'])) && isset($_POST['date_depart']) && isset($_POST['time_in_road'])) {
             $add_post = new Schedule();
-            $add_post->add_post($_POST['region'], $_POST['cur'], $_POST['date_depart'], $_POST['time_in_road']);
+            $add_post->add_post($_POST['region'], $_POST['curier'], $_POST['date_depart'], $_POST['time_in_road']);
         }
         if (isset($_POST['res'])) {
             $get_res = new Schedule();
