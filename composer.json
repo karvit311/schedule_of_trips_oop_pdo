@@ -1,0 +1,23 @@
+{
+    "name": "karvit311/schedule_of_trips_oop_pdo",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Tsumanchuk Liubava",
+            "email": "karvit311@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Application": "application/"
+        },
+        "psr-4": {
+            "": "application/"
+        }
+	},
+    "minimum-stability": "dev",
+    "require": {
+         "php": ">=5.4.0",
+        "ezyang/htmlpurifier": "^4.10"
+    }
+}
