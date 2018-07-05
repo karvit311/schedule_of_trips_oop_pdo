@@ -15,9 +15,9 @@
             "": "application/"
         }
 	},
+    "minimum-stability": "dev",
     "require": {
          "php": ">=5.4.0",
         "ezyang/htmlpurifier": "^4.10"
-    },
-    "minimum-stability": "dev",
+    }
 }
