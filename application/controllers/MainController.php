@@ -1,5 +1,4 @@
 <?php
-
 namespace Application\controllers;
 
 use Application\models\Curier;
