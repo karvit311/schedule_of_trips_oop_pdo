@@ -29,15 +29,15 @@ class Schedule
     public function get_schedules_selects($from, $to)  
     {  
         $conn = App::$app->getDb(); 
-        $stmt = $conn->query("SELECT * FROM schedule WHERE ( date_depart BETWEEN ? AND  ? ) ORDER BY date_depart ASC  ");
+        $stmt = $conn->query("SELECT * FROM schedule WHERE (date_depart BETWEEN ? AND  ?) ORDER BY date_depart ASC ");
         $stmt->bindValue(1, $from);
         $stmt->bindValue(2, $to);
         return $stmt;
     }
     public function insert($region_id,$curier_id,$date_depart_res,$time_in_road,$stamp_total_time_in_road)
     {
-        $conn =App::$app->getDb();
-        $stmt = $conn->query( "INSERT INTO schedule (region_id,curier_id,date_depart,time_in_road,date_arrival)  VALUES(:region_id,:curier_id,:date_depart,:time_in_road,:date_arrival)");
+        $conn = App::$app->getDb();
+        $stmt = $conn->query("INSERT INTO schedule (region_id,curier_id,date_depart,time_in_road,date_arrival)  VALUES(:region_id,:curier_id,:date_depart,:time_in_road,:date_arrival)");
         $stmt->bindParam(":curier_id", $curier_id, \PDO::PARAM_INT);
         $stmt->bindParam(":region_id", $region_id, \PDO::PARAM_INT);
         $stmt->bindParam(":date_depart", $date_depart_res, \PDO::PARAM_STR);
@@ -47,7 +47,7 @@ class Schedule
     }
     public function add_post($region,$curier,$date_depart,$time_in_road)
     {
-        $conn =App::$app->getDb();
+        $conn = App::$app->getDb();
         if((isset($region)  && isset($curier)) && isset($date_depart) && isset($time_in_road)) {   
             $date_depart_res = addslashes( $date_depart);//06/20/2018 6:13 AM
             $date_depart_res = strtotime("$date_depart_res");
@@ -55,7 +55,7 @@ class Schedule
             //время в пути: 375 minuts
             $date_depart = strtotime("$date_depart_res");
             $time_in_road = addslashes(  $time_in_road); //375 minuts
-            // время прибытия: 06/15/2018 23:38:001
+            // время прибытия: 06/15/2018 23:38:00
             $total = $time_in_road*2;
             $minutes_to_add = $total;
             $time = new \DateTime($date_depart_res); 
