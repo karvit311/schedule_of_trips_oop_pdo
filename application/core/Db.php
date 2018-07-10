@@ -10,8 +10,7 @@ class Db
     private $_user;
     private $_password;
     private $_pdo;
-    private $conn;
-
+    
     public function __construct()
     {
         try {
